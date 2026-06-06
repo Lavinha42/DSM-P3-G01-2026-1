@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Publicações</title>
+    <title>Safe - Publicação</title>
      <link rel="shortcut icon" href="../Images/favicon.ico" type="image/x-icon">
     <link rel="stylesheet" href="../CSS/public.css">
     <link rel="stylesheet" href="../CSS/global.css">
@@ -28,7 +28,7 @@
             <a class="nav-item active4" href="perfil.html">
             <span class="icon">👤</span> Perfil
             </a>
-            <a class="nav-item" href="suporte.html">
+            <a class="nav-item" href="#">
             <span class="icon">💬</span> Suporte
             </a>
         </nav>
@@ -36,382 +36,437 @@
             <a class="nav-item" href="#">
             <span class="icon">⚙️</span> Configurações
             </a>
-            <a class="nav-item" href="#">
+            <a class="nav-item" href="../../FRONTEND/View/Index/autenticacao/tela_1 - inicial.html">
             <span class="icon">↪️</span> Sair
             </a>
         </div>
     </aside>
+
     <!-- MAIN CONTENT -->
     <div class="main">
 
-        <!-- TOPBAR -->
-        <header class="topbar">
-            <div class="search-box">
-            <span>🔍</span>
-            <input type="text" placeholder="Buscar receitas seguras..." id="searchInput">
+    <!-- TOPBAR -->
+    <header class="topbar">
+        <div class="search-box">
+        <span>🔍</span>
+        <input type="text" placeholder="Buscar receitas seguras..." id="searchInput">
+        </div>
+        <div class="topbar-right">
+        <div class="notif-btn">🔔<div class="notif-dot"></div></div>
+        <div class="user-chip">
+            <div class="avatar">AS</div>
+            <div class="user-info">
+            <div class="user-name">Ana Silva</div>
+            <div class="user-diet">Sem Glúten</div>
             </div>
-            <div class="topbar-right">
-            <div class="notif-btn">🔔<div class="notif-dot"></div></div>
-            <div class="user-chip">
-                <div class="avatar">AS</div>
-                <div class="user-info">
-                <div class="user-name">Ana Silva</div>
-                <div class="user-diet">Sem Glúten</div>
-                </div>
-            </div>
-            </div>
-        </header>
+        </div>
+        </div>
+    </header>
 
-          <!-- PAGE HEADER -->
+     <!-- PAGE HEADER -->
   <div class="page-header">
-    <div>
-      <h1>Criar Nova Receita</h1>
-      <p>Compartilhe suas criações seguras com a comunidade SafeBite.</p>
+    <div class="page-header-left">
+      <h1>Minhas Publicações</h1>
+      <p>Gerencie e acompanhe o desempenho das suas receitas publicadas.</p>
     </div>
-    <div class="header-actions">
-      <button class="btn-cancel" onclick="showToast('Rascunho salvo!')">Cancelar</button>
-      <button class="btn-publish" onclick="handlePublish()">Publicar Receita →</button>
+    <a href="criacao.html" class="btn-new">+ Nova Receita</a>
+  </div>
+
+  <!-- STATS BAR -->
+  <div class="stats-bar">
+    <div class="stat-item">
+      <div class="stat-value primary">12</div>
+      <div class="stat-label">Total de Receitas</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-value green">9</div>
+      <div class="stat-label">Publicadas</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-value" style="color:#6B7280">2</div>
+      <div class="stat-label">Rascunhos</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-value" style="color:#F59E0B">1</div>
+      <div class="stat-label">Em Revisão</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-value primary">3.2k</div>
+      <div class="stat-label">Curtidas Totais</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-value" style="color:#3B82F6">18k</div>
+      <div class="stat-label">Visualizações</div>
     </div>
   </div>
 
-  <!-- FORM LAYOUT -->
-  <div class="form-layout">
-    <div class="form-col">
+  <!-- CONTENT -->
+  <div class="content">
+    <main class="feed">
 
-      <!-- 1. INFORMAÇÕES BÁSICAS -->
-      <div class="section-card">
-        <div class="section-header">
-          <div class="section-num">1</div>
-          <span class="section-title-text">Informações Básicas</span>
-        </div>
-        <div class="section-body">
-          <div class="field">
-            <label>Nome da Receita</label>
-            <input type="text" id="recipeTitle" placeholder="Ex: Panquecas de Aveia Sem Glúten" oninput="updatePreview()">
-          </div>
-          <div class="field">
-            <label>Descrição Curta</label>
-            <textarea id="recipeDesc" rows="3" placeholder="Uma breve introdução sobre o sabor e a textura..." oninput="updatePreview()"></textarea>
-          </div>
-          <div class="field-row">
-            <div class="field">
-              <label>Tempo de Preparo (min)</label>
-              <div class="input-icon">
-                <span class="icon-prefix">⏱</span>
-                <input type="number" id="recipeTime" min="1" value="30" style="padding-left:34px" oninput="updatePreview()">
-              </div>
-            </div>
-            <div class="field">
-              <label>Rendimento (Porções)</label>
-              <div class="input-icon">
-                <span class="icon-prefix">🍽</span>
-                <input type="number" id="recipePortions" min="1" value="2" style="padding-left:34px" oninput="updatePreview()">
-              </div>
-            </div>
-          </div>
+      <!-- FILTROS -->
+      <div class="filter-row">
+        <div class="filter-tab active" data-filter="todas" onclick="filterCards(this)">Todas (12)</div>
+        <div class="filter-tab" data-filter="publicada" onclick="filterCards(this)">Publicadas (9)</div>
+        <div class="filter-tab" data-filter="rascunho" onclick="filterCards(this)">Rascunhos (2)</div>
+        <div class="filter-tab" data-filter="revisao" onclick="filterCards(this)">Em Revisão (1)</div>
+        <div class="filter-right">
+          <select class="sort-select" onchange="sortCards(this.value)">
+            <option value="recente">Mais Recentes</option>
+            <option value="curtidas">Mais Curtidas</option>
+            <option value="views">Mais Vistas</option>
+          </select>
         </div>
       </div>
 
-      <!-- 2. MÍDIA E CATEGORIAS -->
-      <div class="section-card">
-        <div class="section-header">
-          <div class="section-num">2</div>
-          <span class="section-title-text">Mídia e Categorias</span>
+      <!-- GRID -->
+      <div class="pub-grid" id="pubGrid">
+      <div class="pub-card" data-status="publicada" style="animation-delay:0s">
+        <div class="pub-card-img">
+          <img src="https://images.unsplash.com/photo-1565958011703-44f9829ba187?w=400&amp;q=80" alt="Bolo de Amêndoas e Laranja (Vegano)" loading="lazy">
+          <span class="status-badge status-published">✓ Publicada</span>
+          <div class="card-actions-overlay">
+            <button class="overlay-btn" title="Editar" onclick="editCard(1)">✏️</button>
+            <button class="overlay-btn" title="Excluir" onclick="askDelete(1)">🗑</button>
+          </div>
         </div>
-        <div class="section-body">
-          <div class="upload-area" id="uploadArea">
-            <input type="file" accept="image/*" id="imageInput" onchange="handleImageUpload(event)">
-            <div class="upload-icon">+</div>
-            <div class="upload-text">Clique para enviar uma foto</div>
-            <div class="upload-sub">Formatos suportados: JPG, PNG (Max 5MB)</div>
-            <img id="uploadPreview" class="upload-preview" alt="Preview">
+        <div class="pub-card-body">
+          <div class="pub-card-title">Bolo de Amêndoas e Laranja (Vegano)</div>
+          <div class="pub-card-meta">
+            <span>⏱ 45 min</span>
+            <span>🍽 8 porções</span>
+            <span>📅 há 2 dias</span>
           </div>
-          <div class="field">
-            <label>Tags de Dieta</label>
-            <div class="diet-tags" id="dietTags">
-              <span class="diet-tag" onclick="toggleTag(this)">Vegano</span>
-              <span class="diet-tag" onclick="toggleTag(this)">Vegetariano</span>
-              <span class="diet-tag" onclick="toggleTag(this)">Sem Glúten</span>
-              <span class="diet-tag" onclick="toggleTag(this)">Sem Lactose</span>
-              <span class="diet-tag" onclick="toggleTag(this)">Low Carb</span>
-              <span class="diet-tag" onclick="toggleTag(this)">Keto</span>
-              <span class="diet-tag" onclick="toggleTag(this)">Sem Açúcar</span>
-            </div>
+          <div class="pub-card-tags"><span class="pub-tag">Vegano</span><span class="pub-tag">Sem Glúten</span><span class="pub-tag">Sem Lactose</span></div>
+          
+          <div class="pub-stats">
+            <span class="pub-stat">❤️ 412</span>
+            <span class="pub-stat">👁 2.100</span>
+            <span class="pub-stat">🔖 87</span>
           </div>
+        </div>
+        <div class="pub-card-footer">
+          <button class="card-btn card-btn-edit" onclick="editCard(1)">✏️ Editar</button>
+          <button class="card-btn card-btn-view" onclick="viewCard(1)">👁 Ver</button>
+          <button class="card-btn card-btn-danger" onclick="askDelete(1)">🗑</button>
+        </div>
+      </div>
+      <div class="pub-card" data-status="publicada" style="animation-delay:0.05s">
+        <div class="pub-card-img">
+          <img src="https://images.unsplash.com/photo-1567620905732-2d1ec7ab7445?w=400&amp;q=80" alt="Panquecas de Aveia e Banana" loading="lazy">
+          <span class="status-badge status-published">✓ Publicada</span>
+          <div class="card-actions-overlay">
+            <button class="overlay-btn" title="Editar" onclick="editCard(2)">✏️</button>
+            <button class="overlay-btn" title="Excluir" onclick="askDelete(2)">🗑</button>
+          </div>
+        </div>
+        <div class="pub-card-body">
+          <div class="pub-card-title">Panquecas de Aveia e Banana</div>
+          <div class="pub-card-meta">
+            <span>⏱ 10 min</span>
+            <span>🍽 4 porções</span>
+            <span>📅 há 5 dias</span>
+          </div>
+          <div class="pub-card-tags"><span class="pub-tag">Sem Glúten</span><span class="pub-tag">Café da Manhã</span></div>
+          
+          <div class="pub-stats">
+            <span class="pub-stat">❤️ 398</span>
+            <span class="pub-stat">👁 1.800</span>
+            <span class="pub-stat">🔖 74</span>
+          </div>
+        </div>
+        <div class="pub-card-footer">
+          <button class="card-btn card-btn-edit" onclick="editCard(2)">✏️ Editar</button>
+          <button class="card-btn card-btn-view" onclick="viewCard(2)">👁 Ver</button>
+          <button class="card-btn card-btn-danger" onclick="askDelete(2)">🗑</button>
+        </div>
+      </div>
+      <div class="pub-card" data-status="publicada" style="animation-delay:0.1s">
+        <div class="pub-card-img">
+          <img src="https://images.unsplash.com/photo-1553530666-ba11a7da3888?w=400&amp;q=80" alt="Smoothie Verde Detox" loading="lazy">
+          <span class="status-badge status-published">✓ Publicada</span>
+          <div class="card-actions-overlay">
+            <button class="overlay-btn" title="Editar" onclick="editCard(3)">✏️</button>
+            <button class="overlay-btn" title="Excluir" onclick="askDelete(3)">🗑</button>
+          </div>
+        </div>
+        <div class="pub-card-body">
+          <div class="pub-card-title">Smoothie Verde Detox</div>
+          <div class="pub-card-meta">
+            <span>⏱ 5 min</span>
+            <span>🍽 1 porções</span>
+            <span>📅 há 2 horas</span>
+          </div>
+          <div class="pub-card-tags"><span class="pub-tag">Vegano</span><span class="pub-tag">Sem Glúten</span></div>
+          
+          <div class="pub-stats">
+            <span class="pub-stat">❤️ 54</span>
+            <span class="pub-stat">👁 210</span>
+            <span class="pub-stat">🔖 12</span>
+          </div>
+        </div>
+        <div class="pub-card-footer">
+          <button class="card-btn card-btn-edit" onclick="editCard(3)">✏️ Editar</button>
+          <button class="card-btn card-btn-view" onclick="viewCard(3)">👁 Ver</button>
+          <button class="card-btn card-btn-danger" onclick="askDelete(3)">🗑</button>
+        </div>
+      </div>
+      <div class="pub-card" data-status="revisao" style="animation-delay:0.15000000000000002s">
+        <div class="pub-card-img">
+          <img src="https://images.unsplash.com/photo-1476124369491-e7addf5db371?w=400&amp;q=80" alt="Risoto de Cogumelos Trufado" loading="lazy">
+          <span class="status-badge status-review">⏳ Em Revisão</span>
+          <div class="card-actions-overlay">
+            <button class="overlay-btn" title="Editar" onclick="editCard(4)">✏️</button>
+            <button class="overlay-btn" title="Excluir" onclick="askDelete(4)">🗑</button>
+          </div>
+        </div>
+        <div class="pub-card-body">
+          <div class="pub-card-title">Risoto de Cogumelos Trufado</div>
+          <div class="pub-card-meta">
+            <span>⏱ 40 min</span>
+            <span>🍽 3 porções</span>
+            <span>📅 há 1 dia</span>
+          </div>
+          <div class="pub-card-tags"><span class="pub-tag">Vegetariano</span><span class="pub-tag">Sem Glúten</span></div>
+          
+          <div class="pub-stats" style="color:var(--muted);font-size:11px;font-style:italic">
+            ⏳ Aguardando aprovação da equipe SafeBite
+          </div>
+        </div>
+        <div class="pub-card-footer">
+          <button class="card-btn card-btn-edit" onclick="editCard(4)">✏️ Editar</button>
+          <button class="card-btn card-btn-view" onclick="viewCard(4)">👁 Ver</button>
+          <button class="card-btn card-btn-danger" onclick="askDelete(4)">🗑</button>
+        </div>
+      </div>
+      <div class="pub-card" data-status="publicada" style="animation-delay:0.2s">
+        <div class="pub-card-img">
+          <img src="https://images.unsplash.com/photo-1565299585323-38d6b0865b47?w=400&amp;q=80" alt="Tapioca com Frango Desfiado" loading="lazy">
+          <span class="status-badge status-published">✓ Publicada</span>
+          <div class="card-actions-overlay">
+            <button class="overlay-btn" title="Editar" onclick="editCard(5)">✏️</button>
+            <button class="overlay-btn" title="Excluir" onclick="askDelete(5)">🗑</button>
+          </div>
+        </div>
+        <div class="pub-card-body">
+          <div class="pub-card-title">Tapioca com Frango Desfiado</div>
+          <div class="pub-card-meta">
+            <span>⏱ 15 min</span>
+            <span>🍽 2 porções</span>
+            <span>📅 há 1 semana</span>
+          </div>
+          <div class="pub-card-tags"><span class="pub-tag">Sem Glúten</span><span class="pub-tag">Low Carb</span></div>
+          
+          <div class="pub-stats">
+            <span class="pub-stat">❤️ 287</span>
+            <span class="pub-stat">👁 1.340</span>
+            <span class="pub-stat">🔖 55</span>
+          </div>
+        </div>
+        <div class="pub-card-footer">
+          <button class="card-btn card-btn-edit" onclick="editCard(5)">✏️ Editar</button>
+          <button class="card-btn card-btn-view" onclick="viewCard(5)">👁 Ver</button>
+          <button class="card-btn card-btn-danger" onclick="askDelete(5)">🗑</button>
+        </div>
+      </div>
+      <div class="pub-card" data-status="rascunho" style="animation-delay:0.25s">
+        <div class="pub-card-img">
+          <img src="https://images.unsplash.com/photo-1547592180-85f173990554?w=400&amp;q=80" alt="Sopa de Lentilha com Especiarias" loading="lazy">
+          <span class="status-badge status-draft">✎ Rascunho</span>
+          <div class="card-actions-overlay">
+            <button class="overlay-btn" title="Editar" onclick="editCard(6)">✏️</button>
+            <button class="overlay-btn" title="Excluir" onclick="askDelete(6)">🗑</button>
+          </div>
+        </div>
+        <div class="pub-card-body">
+          <div class="pub-card-title">Sopa de Lentilha com Especiarias</div>
+          <div class="pub-card-meta">
+            <span>⏱ 40 min</span>
+            <span>🍽 4 porções</span>
+            <span>📅 há 3 dias</span>
+          </div>
+          <div class="pub-card-tags"><span class="pub-tag">Vegano</span><span class="pub-tag">Sem Glúten</span></div>
+          
+          <div class="pub-stats" style="color:var(--muted);font-size:11px;font-style:italic">
+            📝 Não publicada ainda
+          </div>
+        </div>
+        <div class="pub-card-footer">
+          <button class="card-btn card-btn-edit" onclick="editCard(6)">✏️ Editar</button>
+          <button class="card-btn card-btn-view" onclick="viewCard(6)">👁 Ver</button>
+          <button class="card-btn card-btn-danger" onclick="askDelete(6)">🗑</button>
+        </div>
+      </div>
+      <div class="pub-card" data-status="publicada" style="animation-delay:0.30000000000000004s">
+        <div class="pub-card-img">
+          <img src="https://images.unsplash.com/photo-1467003909585-2f8a72700288?w=400&amp;q=80" alt="Frango Grelhado com Ervas" loading="lazy">
+          <span class="status-badge status-published">✓ Publicada</span>
+          <div class="card-actions-overlay">
+            <button class="overlay-btn" title="Editar" onclick="editCard(7)">✏️</button>
+            <button class="overlay-btn" title="Excluir" onclick="askDelete(7)">🗑</button>
+          </div>
+        </div>
+        <div class="pub-card-body">
+          <div class="pub-card-title">Frango Grelhado com Ervas</div>
+          <div class="pub-card-meta">
+            <span>⏱ 30 min</span>
+            <span>🍽 2 porções</span>
+            <span>📅 há 2 semanas</span>
+          </div>
+          <div class="pub-card-tags"><span class="pub-tag">Sem Lactose</span><span class="pub-tag">Low Carb</span></div>
+          
+          <div class="pub-stats">
+            <span class="pub-stat">❤️ 320</span>
+            <span class="pub-stat">👁 1.560</span>
+            <span class="pub-stat">🔖 63</span>
+          </div>
+        </div>
+        <div class="pub-card-footer">
+          <button class="card-btn card-btn-edit" onclick="editCard(7)">✏️ Editar</button>
+          <button class="card-btn card-btn-view" onclick="viewCard(7)">👁 Ver</button>
+          <button class="card-btn card-btn-danger" onclick="askDelete(7)">🗑</button>
+        </div>
+      </div>
+      <div class="pub-card" data-status="publicada" style="animation-delay:0.35000000000000003s">
+        <div class="pub-card-img">
+          <img src="https://images.unsplash.com/photo-1512621776951-a57141f2eefd?w=400&amp;q=80" alt="Bowl de Quinoa e Vegetais" loading="lazy">
+          <span class="status-badge status-published">✓ Publicada</span>
+          <div class="card-actions-overlay">
+            <button class="overlay-btn" title="Editar" onclick="editCard(8)">✏️</button>
+            <button class="overlay-btn" title="Excluir" onclick="askDelete(8)">🗑</button>
+          </div>
+        </div>
+        <div class="pub-card-body">
+          <div class="pub-card-title">Bowl de Quinoa e Vegetais</div>
+          <div class="pub-card-meta">
+            <span>⏱ 20 min</span>
+            <span>🍽 2 porções</span>
+            <span>📅 há 3 semanas</span>
+          </div>
+          <div class="pub-card-tags"><span class="pub-tag">Vegano</span><span class="pub-tag">Sem Glúten</span></div>
+          
+          <div class="pub-stats">
+            <span class="pub-stat">❤️ 510</span>
+            <span class="pub-stat">👁 2.800</span>
+            <span class="pub-stat">🔖 112</span>
+          </div>
+        </div>
+        <div class="pub-card-footer">
+          <button class="card-btn card-btn-edit" onclick="editCard(8)">✏️ Editar</button>
+          <button class="card-btn card-btn-view" onclick="viewCard(8)">👁 Ver</button>
+          <button class="card-btn card-btn-danger" onclick="askDelete(8)">🗑</button>
+        </div>
+      </div>
+      <div class="pub-card" data-status="rascunho" style="animation-delay:0.4s">
+        <div class="pub-card-img">
+          <img src="https://images.unsplash.com/photo-1540420773420-3366772f4999?w=400&amp;q=80" alt="Wrap Integral de Grão-de-Bico" loading="lazy">
+          <span class="status-badge status-draft">✎ Rascunho</span>
+          <div class="card-actions-overlay">
+            <button class="overlay-btn" title="Editar" onclick="editCard(9)">✏️</button>
+            <button class="overlay-btn" title="Excluir" onclick="askDelete(9)">🗑</button>
+          </div>
+        </div>
+        <div class="pub-card-body">
+          <div class="pub-card-title">Wrap Integral de Grão-de-Bico</div>
+          <div class="pub-card-meta">
+            <span>⏱ 20 min</span>
+            <span>🍽 2 porções</span>
+            <span>📅 há 4 dias</span>
+          </div>
+          <div class="pub-card-tags"><span class="pub-tag">Vegano</span></div>
+          
+          <div class="pub-stats" style="color:var(--muted);font-size:11px;font-style:italic">
+            📝 Não publicada ainda
+          </div>
+        </div>
+        <div class="pub-card-footer">
+          <button class="card-btn card-btn-edit" onclick="editCard(9)">✏️ Editar</button>
+          <button class="card-btn card-btn-view" onclick="viewCard(9)">👁 Ver</button>
+          <button class="card-btn card-btn-danger" onclick="askDelete(9)">🗑</button>
+        </div>
+      </div></div>
+
+    </main>
+
+    <!-- ASIDE -->
+    <aside class="aside">
+
+      <!-- Dicas -->
+      <div class="aside-card">
+        <div class="aside-card-title">💡 Dicas para Publicar</div>
+        <div class="tip-item">
+          <span class="tip-icon">📸</span>
+          <span>Receitas com fotos de alta qualidade recebem <strong>3x mais curtidas</strong>.</span>
+        </div>
+        <div class="tip-item">
+          <span class="tip-icon">🏷</span>
+          <span>Use tags de restrição como "Sem Glúten" para alcançar o público certo.</span>
+        </div>
+        <div class="tip-item">
+          <span class="tip-icon">📝</span>
+          <span>Descrições detalhadas aumentam o tempo de leitura e o engajamento.</span>
         </div>
       </div>
 
-      <!-- 3. INGREDIENTES -->
-      <div class="section-card">
-        <div class="section-header">
-          <div class="section-num">3</div>
-          <div class="section-header-flex">
-            <span class="section-title-text">Ingredientes</span>
-            <button class="add-btn" onclick="addIngredient()">+ Adicionar</button>
+      <!-- Atividade Recente -->
+      <div class="aside-card">
+        <div class="aside-card-title">
+          🕐 Atividade Recente
+          <a href="#">Ver tudo</a>
+        </div>
+        <div class="activity-item">
+          <div class="activity-dot dot-green"></div>
+          <div>
+            <div class="activity-text"><strong>Lucas R.</strong> curtiu seu Bolo de Amêndoas</div>
+            <div class="activity-time">há 5 minutos</div>
           </div>
         </div>
-        <div class="section-body" id="ingredientsList">
-          <div class="field" style="margin-bottom:4px">
-            <label>Ingrediente</label>
-          </div>
-        <div class="ingredient-row" id="ing-1">
-    <input type="text" placeholder="Ex: 200g de Farinha de Arroz">
-    <label class="allergen-check">
-      <input type="checkbox"> <span>⚠ Alergênico?</span>
-    </label>
-    <button class="remove-btn" onclick="removeRow('ing-1')">🗑</button>
-  </div></div>
-      </div>
-
-      <!-- 4. MODO DE PREPARO -->
-      <div class="section-card">
-        <div class="section-header">
-          <div class="section-num">4</div>
-          <div class="section-header-flex">
-            <span class="section-title-text">Modo de Preparo</span>
-            <button class="add-btn" onclick="addStep()">+ Novo Passo</button>
+        <div class="activity-item">
+          <div class="activity-dot dot-orange"></div>
+          <div>
+            <div class="activity-text">Sua receita de <strong>Smoothie Verde</strong> foi publicada</div>
+            <div class="activity-time">há 2 horas</div>
           </div>
         </div>
-        <div class="section-body" id="stepsList"><div class="step-row" id="step-1">
-    <div class="step-badge">1</div>
-    <textarea placeholder="Descreva o que fazer neste estágio..."></textarea>
-    <button class="remove-btn" onclick="removeRow('step-1')" style="margin-top:4px">🗑</button>
-  </div></div>
-      </div>
-
-      <!-- 5. VISIBILIDADE -->
-      <div class="section-card">
-        <div class="section-header">
-          <div class="section-num">5</div>
-          <span class="section-title-text">Visibilidade e Publicação</span>
-        </div>
-        <div class="section-body">
-          <div class="visibility-options">
-            <label class="vis-option selected" id="visPublic">
-              <input type="radio" name="visibility" value="public" checked="" onchange="selectVis('public')">
-              <span class="vis-icon">🌐</span>
-              <div>
-                <div class="vis-label">Público</div>
-                <div class="vis-sub">Todos os usuários podem ver e salvar sua receita.</div>
-              </div>
-              <div class="vis-indicator"></div>
-            </label>
-            <label class="vis-option" id="visPrivate">
-              <input type="radio" name="visibility" value="private" onchange="selectVis('private')">
-              <span class="vis-icon">🔒</span>
-              <div>
-                <div class="vis-label">Privado</div>
-                <div class="vis-sub">Apenas você pode ver a receita no seu perfil.</div>
-              </div>
-              <div class="vis-indicator"></div>
-            </label>
+        <div class="activity-item">
+          <div class="activity-dot dot-blue"></div>
+          <div>
+            <div class="activity-text"><strong>Maria S.</strong> salvou seu Frango Grelhado</div>
+            <div class="activity-time">há 1 dia</div>
           </div>
-          <label class="confirm-check">
-            <input type="checkbox" id="confirmCheck">
-            Confirmo que esta receita foi testada e as informações de alérgenos estão corretas.
-          </label>
         </div>
-      </div>
-
+        <div class="activity-item">
+          <div class="activity-dot dot-green"></div>
+          <div>
+            <div class="activity-text">Panquecas de Aveia atingiu <strong>400 curtidas</strong></div>
+            <div class="activity-time">há 2 dias</div>
+          </div>
+        </div>
+      </div>   
     </div>
 
-    <!-- PREVIEW -->
-    <div class="preview-col">
-      <div class="preview-label">👁 VISUALIZAÇÃO EM TEMPO REAL</div>
 
-      <div class="preview-card">
-        <div class="preview-img" id="previewImgBox">
-          <img id="previewImg" alt="">
-          <div class="preview-img-placeholder" id="previewPlaceholder">🍽</div>
-          <span style="font-size:11px;color:var(--muted)" id="previewPlaceholderText">Adicione uma foto</span>
-        </div>
-        <div class="preview-tags" id="previewTags">
-          <span class="preview-tag safe">Seguro</span>
-          <span class="preview-tag" id="previewTagGluten" style="display:none">Sem Glúten</span>
-        </div>
-        <div class="preview-body">
-          <div class="preview-title placeholder" id="previewTitle">Título da Receita</div>
-          <div class="preview-meta" id="previewMeta">⏱ 30 min · 🍽 2 porções</div>
-          <div style="font-size:11px;color:var(--muted);line-height:1.5" id="previewDesc">Sua descrição aparecerá aqui. Conte aos usuários o que torna esta receita especial e segura para fazer.</div>
-        </div>
-        <div class="preview-author">
-          <div class="preview-author-avatar">AS</div>
-          <span>Ana Silva · Especialista em Culinária</span>
-          <a href="#">Ver detalhes</a>
-        </div>
-      </div>
+        <footer>
+            <span>© 2026 SafeBite. Todos os direitos reservados.</span>
+            <div class="footer-links">
+                <a href="#">Privacidade</a>
+                <a href="#">Termos</a>
+                <a href="#">Suporte</a>
+            </div>
+        </footer>
 
-      <div class="security-note">
-        <strong>🛡 Dica de Segurança</strong>
-        Receitas com ingredientes marcados como alérgenos comuns (leite, ovos, amendoim) serão automaticamente revisadas com base nas restrições dos seus leitores.
-      </div>
-    </div>
+        <div class="modal-overlay" id="deleteModal">
+        <div class="modal">
+            <div style="font-size:36px;margin-bottom:12px">🗑</div>
+            <h3>Excluir Receita?</h3>
+            <p>Esta ação não pode ser desfeita. A receita será removida permanentemente das suas publicações.</p>
+            <div class="modal-actions">
+            <button class="modal-cancel" onclick="closeModal()">Cancelar</button>
+            <button class="modal-confirm" onclick="confirmDelete()">Sim, Excluir</button>
+            </div>
   </div>
+</div>
 
-  <!-- FOOTER ACTIONS -->
-  <div class="form-footer">
-    <button class="btn-discard" onclick="handleDiscard()">Descartar Rascunho</button>
-    <button class="btn-save" onclick="handlePublish()">Salvar e Publicar 🚀</button>
-  </div>
-    </div>
-
-    
-<script>
-// ── PREVIEW ──
-function updatePreview() {
-  const title = document.getElementById('recipeTitle').value.trim();
-  const desc  = document.getElementById('recipeDesc').value.trim();
-  const time  = document.getElementById('recipeTime').value || '0';
-  const port  = document.getElementById('recipePortions').value || '0';
-
-  const titleEl = document.getElementById('previewTitle');
-  titleEl.textContent = title || 'Título da Receita';
-  titleEl.classList.toggle('placeholder', !title);
-
-  document.getElementById('previewDesc').textContent =
-    desc || 'Sua descrição aparecerá aqui. Conte aos usuários o que torna esta receita especial e segura para fazer.';
-
-  document.getElementById('previewMeta').textContent = `⏱ ${time} min · 🍽 ${port} porções`;
-}
-
-// ── UPLOAD DE IMAGEM ──
-function handleImageUpload(e) {
-  const file = e.target.files[0];
-  if (!file) return;
-  const reader = new FileReader();
-  reader.onload = ev => {
-    const preview = document.getElementById('uploadPreview');
-    preview.src = ev.target.result;
-    preview.style.display = 'block';
-    document.querySelector('.upload-icon').style.display = 'none';
-    document.querySelector('.upload-text').style.display = 'none';
-    document.querySelector('.upload-sub').style.display = 'none';
-
-    // Atualiza preview lateral
-    const pImg = document.getElementById('previewImg');
-    pImg.src = ev.target.result;
-    pImg.style.display = 'block';
-    document.getElementById('previewPlaceholder').style.display = 'none';
-    document.getElementById('previewPlaceholderText').style.display = 'none';
-  };
-  reader.readAsDataURL(file);
-}
-
-// ── TAGS ──
-function toggleTag(el) {
-  el.classList.toggle('selected');
-  updatePreviewTags();
-}
-
-function updatePreviewTags() {
-  const selected = [...document.querySelectorAll('.diet-tag.selected')].map(t => t.textContent);
-  const container = document.getElementById('previewTags');
-  const fixed = '<span class="preview-tag safe">Seguro</span>';
-  const tags = selected.map(t => `<span class="preview-tag">${t}</span>`).join('');
-  container.innerHTML = fixed + tags;
-}
-
-// ── INGREDIENTES ──
-let ingCount = 0;
-
-function addIngredient() {
-  ingCount++;
-  const list = document.getElementById('ingredientsList');
-  const row = document.createElement('div');
-  row.className = 'ingredient-row';
-  row.id = `ing-${ingCount}`;
-  row.innerHTML = `
-    <input type="text" placeholder="Ex: 200g de Farinha de Arroz">
-    <label class="allergen-check">
-      <input type="checkbox"> <span>⚠ Alergênico?</span>
-    </label>
-    <button class="remove-btn" onclick="removeRow('ing-${ingCount}')">🗑</button>
-  `;
-  list.appendChild(row);
-}
-
-// ── PASSOS ──
-let stepCount = 0;
-
-function addStep() {
-  stepCount++;
-  const list = document.getElementById('stepsList');
-  const row = document.createElement('div');
-  row.className = 'step-row';
-  row.id = `step-${stepCount}`;
-  row.innerHTML = `
-    <div class="step-badge">${stepCount}</div>
-    <textarea placeholder="Descreva o que fazer neste estágio..."></textarea>
-    <button class="remove-btn" onclick="removeRow('step-${stepCount}')" style="margin-top:4px">🗑</button>
-  `;
-  list.appendChild(row);
-}
-
-function removeRow(id) {
-  const el = document.getElementById(id);
-  if (el) el.remove();
-  renumberSteps();
-}
-
-function renumberSteps() {
-  document.querySelectorAll('#stepsList .step-badge').forEach((badge, i) => {
-    badge.textContent = i + 1;
-  });
-  stepCount = document.querySelectorAll('#stepsList .step-row').length;
-}
-
-// ── VISIBILIDADE ──
-function selectVis(val) {
-  document.getElementById('visPublic').classList.toggle('selected', val === 'public');
-  document.getElementById('visPrivate').classList.toggle('selected', val === 'private');
-}
-
-// ── PUBLICAR ──
-function handlePublish() {
-  const title = document.getElementById('recipeTitle').value.trim();
-  const confirmed = document.getElementById('confirmCheck').checked;
-
-  if (!title) { showToast('⚠ Adicione um nome para a receita!'); return; }
-  if (!confirmed) { showToast('⚠ Confirme as informações de alérgenos!'); return; }
-
-  showToast('🚀 Receita publicada com sucesso!');
-}
-
-function handleDiscard() {
-  if (confirm('Tem certeza que deseja descartar o rascunho?')) {
-    document.getElementById('recipeTitle').value = '';
-    document.getElementById('recipeDesc').value = '';
-    document.getElementById('ingredientsList').querySelectorAll('.ingredient-row').forEach(r => r.remove());
-    document.getElementById('stepsList').innerHTML = '';
-    stepCount = 0; ingCount = 0;
-    updatePreview();
-    showToast('🗑 Rascunho descartado.');
-  }
-}
-
-// ── TOAST ──
-function showToast(msg) {
-  const existing = document.querySelector('.toast');
-  if (existing) existing.remove();
-  const toast = document.createElement('div');
-  toast.className = 'toast';
-  toast.textContent = msg;
-  document.body.appendChild(toast);
-  requestAnimationFrame(() => {
-    toast.style.opacity = '1';
-    toast.style.transform = 'translateX(-50%) translateY(0)';
-  });
-  setTimeout(() => {
-    toast.style.opacity = '0';
-    setTimeout(() => toast.remove(), 300);
-  }, 2500);
-}
-
-// ── INIT ──
-addIngredient();
-addStep();
-updatePreview();
-</script>
-
+         <script src="../JS/publicacao.js"></script>
 </body>
 </html>

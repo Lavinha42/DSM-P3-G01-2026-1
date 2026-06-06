@@ -8,7 +8,19 @@
   --text-light: #6B7280;
   --border: #E5E7EB;
   --hover: #FFF4E8;
+  /*--muted: #6B7280;
+  --bg: #F8F9FB;
+  --green: #22C55E;
+  --amber: #F59E0B;*/
+  --radius: 12px;
+  --danger: #EF4444;
+  --danger-bg: #FEF2F2;
+  --danger-border: #FECACA;
+  --sidebar-w: 200px;
+
 }
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
 body {
   margin: 0;
@@ -72,11 +84,6 @@ body {
   }
 
    .nav-item:hover { background: var(--border); color: var(--text); }
-
-  .nav-item.active {
-    background: var(--border);
-    color: var(--text);
-  }
 
   .nav-item .icon { font-size: 16px; width: 20px; text-align: center; }
 
@@ -197,3 +204,28 @@ body {
   .user-info { line-height: 1.2; }
   .user-name { font-size: 13px; font-weight: 600; }
   .user-diet { font-size: 11px; color: var(--text); }
+
+  footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px 28px;
+  border-top: 1px solid var(--border);
+  font-size: 12px;
+  color: var(--muted);
+  background: var(--surface);
+  margin-left: 0; /* garante que não fique sob a sidebar */
+}
+
+.footer-links {
+  display: flex;
+  gap: 16px;
+}
+
+.footer-links a {
+  color: var(--text);
+  text-decoration: none;
+  transition: color .2s;
+}
+
+.footer-links a:hover { color: var(--primary-hover); }
